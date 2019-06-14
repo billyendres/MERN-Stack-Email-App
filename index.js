@@ -1,11 +1,22 @@
 const express = require("express");
-
-//all route handlers associated with app
+// const connectDB = require("./config/db");
 const app = express();
 
-app.get("/", (req, res) => {
-	res.send({ hi: "there" });
-});
+//Connect to DB
+// connectDB();
 
-const PORT = process.env.PORT || 5005;
-app.listen(PORT);
+//Initialise Middleware
+// app.use(express.json({ extended: false }));
+
+app.get("/", (req, res) => res.send("API Running"));
+
+//Define All Routes
+// app.use("/api/users", require("./routes/api/users"));
+// app.use("/api/auth", require("./routes/api/auth"));
+// app.use("/api/profile", require("./routes/api/profile"));
+// app.use("/api/posts", require("./routes/api/posts"));
+
+//Setup Dynamic PORT
+const PORT = process.env.PORT || 5500;
+
+app.listen(PORT, () => console.log(`server on port ${PORT}`));
