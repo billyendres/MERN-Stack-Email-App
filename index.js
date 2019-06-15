@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 //Import keys and mongoURI
-const keys = require("./config/keys");
+const keys = require("./config/prodKeys");
 
 //require passportConfig files - & mongoose schemas
 require("./models/User");

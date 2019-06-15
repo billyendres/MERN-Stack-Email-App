@@ -1,10 +1,9 @@
-module.exports = {
-	googleClientID:
-		"736761210251-uo8cgfu5b5mgqk8400h809h77cmcfg2l.apps.googleusercontent.com",
-	googleClientSecret: "ISsy8biZVe5COFWXC5qZSyEI",
-	mongoURI:
-		"mongodb+srv://billy:billy@cluster0-xvouw.mongodb.net/test?retryWrites=true&w=majority",
-	cookieKey: "vekjnvkjervjernvjkernvjenr"
-};
+//Figure out if in dev or production mode
 
-// "mongodb+srv://billy:billy@cluster0-rresy.mongodb.net/test?retryWrites=true&w=majority"
+if (process.env.NODE_ENV === "production") {
+	//in production - return prodKeys
+	module.exports = require("./prodKeys");
+} else {
+	//in development, return devKeys
+	module.exports = require("./devKeys");
+}
