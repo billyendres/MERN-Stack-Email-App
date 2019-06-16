@@ -12,28 +12,44 @@
 
 //Add redirect URI to google API's dev console
 
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import { connect } from "react-redux";
+//* Imports all action creators
+import * as actions from "../actions";
 
 import Header from "./Header";
 import Dashboard from "./Dashboard";
 import Landing from "./Landing";
 import SurveyNew from "./SurveyNew";
 
-const App = () => {
-	return (
-		<div>
-			<BrowserRouter>
-				<div>
-					<h1>dev mode</h1>
-					<Header />
-					<Route exact path="/" component={Landing} />
-					<Route exact path="/surveys" component={Dashboard} />
-					<Route exact path="/surveys/new" component={SurveyNew} />
-				</div>
-			</BrowserRouter>
-		</div>
-	);
-};
+import { Container } from "react-bootstrap";
 
-export default App;
+class App extends Component {
+	//fetchUser action creator available
+	//through connect function as props in App.js
+	componentDidMount() {
+		this.props.fetchUser();
+	}
+
+	render() {
+		return (
+			<div>
+				<BrowserRouter>
+					<Container>
+						<Header />
+						<Route exact path="/" component={Landing} />
+						<Route exact path="/surveys" component={Dashboard} />
+						<Route exact path="/surveys/new" component={SurveyNew} />
+					</Container>
+				</BrowserRouter>
+			</div>
+		);
+	}
+}
+//Pass in action creators
+//Saved to App component as props
+export default connect(
+	null,
+	actions
+)(App);
