@@ -22,13 +22,15 @@ passport.deserializeUser((id, done) => {
 });
 
 //Creates new instance of GoogleStrategy
-//Add unique keys and keys.js to .gitignore
+//Add unique keys and devKeys.js to .gitignore
 passport.use(
 	new GoogleStrategy(
 		{
 			clientID: keys.googleClientID,
 			clientSecret: keys.googleClientSecret,
-			callbackURL: "/auth/google/callback"
+			callbackURL: "/auth/google/callback",
+			//Tells app to trust heroku proxy
+			proxy: true
 		},
 		//Use model class to create new instance of User
 		//.save() persists to db
