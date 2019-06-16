@@ -34,17 +34,18 @@ passport.use(
 		},
 		//Use model class to create new instance of User
 		//.save() persists to db
-		(accessToken, refreshToken, profile, done) => {
-			User.findOne({ googleID: profile.id }).then(existingUser => {
-				if (existingUser) {
-					//already have a record with given profile.id
-					done(null, existingUser);
-				} else {
-					//don't have a user record with profile.id so create one
-					new User({ googleID: profile.id }).save().then(user => done(null, user));
-					//profile.id comes from users google profile
-				}
-			});
+		async (accessToken, refreshToken, profile, done) => {
+			const existingUser = await User.findOne({ googleID: profile.id });
+
+			if (existingUser) {
+				//already have a record with given profile.id
+				done(null, existingUser);
+			} else {
+				//don't have a user record with profile.id so create one
+				const user = await new User({ googleID: profile.id }).save();
+				done(null, user);
+				//profile.id comes from users google profile
+			}
 		}
 	)
 );
