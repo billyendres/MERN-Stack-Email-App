@@ -1,4 +1,4 @@
-//Auth Reducer checks users login authentication
+//Auth Reducer checks if user is logged in
 
 export default function(state = {}, action) {
 	switch (action.type) {

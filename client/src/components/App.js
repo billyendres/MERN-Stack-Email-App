@@ -1,5 +1,3 @@
-import React from "react";
-
 //inside server directory -
 //sudo npm install -g create-react-app
 //create-react-app client
@@ -14,10 +12,26 @@ import React from "react";
 
 //Add redirect URI to google API's dev console
 
+import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+
+import Header from "./Header";
+import Dashboard from "./Dashboard";
+import Landing from "./Landing";
+import SurveyNew from "./SurveyNew";
+
 const App = () => {
 	return (
 		<div>
-			<a href="/auth/google">login</a>
+			<BrowserRouter>
+				<div>
+					<h1>dev mode</h1>
+					<Header />
+					<Route exact path="/" component={Landing} />
+					<Route exact path="/surveys" component={Dashboard} />
+					<Route exact path="/surveys/new" component={SurveyNew} />
+				</div>
+			</BrowserRouter>
 		</div>
 	);
 };
