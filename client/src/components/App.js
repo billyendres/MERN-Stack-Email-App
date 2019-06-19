@@ -23,8 +23,6 @@ import Dashboard from "./Dashboard";
 import Landing from "./Landing";
 import SurveyNew from "./SurveyNew";
 
-import { Container } from "react-bootstrap";
-
 class App extends Component {
 	//fetchUser action creator available
 	//through connect function as props in App.js
@@ -36,12 +34,10 @@ class App extends Component {
 		return (
 			<div>
 				<BrowserRouter>
-					<Container>
-						<Header />
-						<Route exact path="/" component={Landing} />
-						<Route exact path="/surveys" component={Dashboard} />
-						<Route exact path="/surveys/new" component={SurveyNew} />
-					</Container>
+					<Header />
+					<Route exact path="/" component={Landing} />
+					<Route exact path="/surveys" component={Dashboard} />
+					<Route exact path="/surveys/new" component={SurveyNew} />
 				</BrowserRouter>
 			</div>
 		);

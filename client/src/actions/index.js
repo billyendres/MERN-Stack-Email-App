@@ -6,8 +6,9 @@ import { FETCH_USER } from "./types";
 export const fetchUser = () => async dispatch => {
 	const res = await axios.get("/api/current_user");
 
+	//only require res.data to check users login status
 	dispatch({
 		type: FETCH_USER,
-		payload: res
+		payload: res.data
 	});
 };

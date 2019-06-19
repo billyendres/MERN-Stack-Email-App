@@ -12,12 +12,18 @@ module.exports = app => {
 	);
 
 	//Pushes into oAuth flow
-	app.get("/auth/google/callback", passport.authenticate("google"));
+	app.get(
+		"/auth/google/callback",
+		passport.authenticate("google"),
+		(req, res) => {
+			res.redirect("/surverys");
+		}
+	);
 
 	//logout user - takes cookie and deletes user id
 	app.get("/api/logout", (req, res) => {
 		req.logout();
-		res.send(req.user);
+		res.redirect("/");
 	});
 
 	app.get("/api/current_user", (req, res) => {
