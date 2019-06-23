@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 
 import { Navbar, NavbarBrand } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import { Col } from "react-bootstrap";
+
+import StripeBilling from "./StripeBilling";
 
 //Run a switch statement to determine -
 //1: null - not sure of user login
@@ -16,33 +17,52 @@ class Header extends Component {
 			case null:
 				return;
 			case false:
-				return <Link to="/auth/google">Login With Google</Link>;
+				return (
+					<Button>
+						<a href="/auth/google" style={{ color: "white" }}>
+							Login With Google
+						</a>
+					</Button>
+				);
 			default:
-				return <Link to="/api/logout">Logout</Link>;
+				return (
+					<>
+						<StripeBilling />
+						<Button
+							style={{
+								color: "white",
+								marginLeft: "2rem",
+								marginRight: "2rem"
+							}}
+						>
+							<a href="/api/logout" style={{ color: "white" }}>
+								Logout
+							</a>
+						</Button>
+					</>
+				);
 		}
 	}
 
 	render() {
 		return (
-			<div>
-				<Navbar bg="dark" variant="dark">
-					<Col lg={10}>
-						<NavbarBrand>
-							<Link
-								to={this.props.auth ? "/surveys" : "/"}
-								style={{ color: "white", textTransform: "uppercase" }}
-							>
-								MERN Stack Email App
-							</Link>
-						</NavbarBrand>
-					</Col>
-					<Col lg={2}>
-						<Button onClick={this.displayContent()} variant="outline-primary">
-							{this.displayContent()}
-						</Button>
-					</Col>
-				</Navbar>
-			</div>
+			<Navbar className="justify-content-between" bg="dark" variant="dark">
+				<Link
+					to={this.props.auth ? "/surveys" : "/"}
+					style={{
+						color: "white",
+						fontSize: "2rem",
+						textTransform: "uppercase",
+						marginLeft: "2rem",
+						marginRight: "2rem"
+					}}
+				>
+					MERN Stack Email App
+				</Link>
+				<NavbarBrand>
+					<div>{this.displayContent()}</div>
+				</NavbarBrand>
+			</Navbar>
 		);
 	}
 }
