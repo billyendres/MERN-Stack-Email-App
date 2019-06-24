@@ -19,27 +19,34 @@ class Header extends Component {
 			case false:
 				return (
 					<Button>
-						<a href="/auth/google" style={{ color: "white" }}>
+						<a href="/auth/google" style={{ color: "white", textDecoration: "none" }}>
 							Login With Google
 						</a>
 					</Button>
 				);
 			default:
 				return (
-					<>
+					<div>
+						<div
+							style={{
+								textTransform: "uppercase",
+								marginRight: "1rem"
+							}}
+						>
+							You Have {this.props.auth.credits} Credits
+						</div>
 						<StripeBilling />
 						<Button
 							style={{
 								color: "white",
-								marginLeft: "2rem",
-								marginRight: "2rem"
+								margin: "1rem"
 							}}
 						>
-							<a href="/api/logout" style={{ color: "white" }}>
+							<a href="/api/logout" style={{ color: "white", textDecoration: "none" }}>
 								Logout
 							</a>
 						</Button>
-					</>
+					</div>
 				);
 		}
 	}
@@ -54,7 +61,8 @@ class Header extends Component {
 						fontSize: "2rem",
 						textTransform: "uppercase",
 						marginLeft: "2rem",
-						marginRight: "2rem"
+						marginRight: "2rem",
+						textDecoration: "none"
 					}}
 				>
 					MERN Stack Email App
