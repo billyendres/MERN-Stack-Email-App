@@ -40,6 +40,20 @@ require("./routes/authRoutes")(app);
 //Billing Routes
 require("./routes/billingRoutes")(app);
 
+//REMEMBER TO ADD HEROKU POSTBUILD SCRIPT TO PACKAGE.JSON
+// "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+
+//Only runs this code if in production - Heroku Deploy
+if (process.env.NODE_ENV === "production") {
+	// Express will serve up production assets ( main.js, main.css etc)
+	app.use(express.static("client/build"));
+	//Express will serve up Index.html if it doesn't recognise the route
+	const path = require("path");
+	app.get("*", (req, res) => {
+		res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+	});
+}
+
 //Setup Dynamic PORT
 const PORT = process.env.PORT || 5500;
 
