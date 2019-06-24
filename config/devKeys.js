@@ -1,8 +1,8 @@
 //Development Keys
 module.exports = {
 	googleClientID:
-		"736761210251-uo8cgfu5b5mgqk8400h809h77cmcfg2l.apps.googleusercontent.com",
-	googleClientSecret: "ISsy8biZVe5COFWXC5qZSyEI",
+		"284598256078-q8itp2111h9vdd76bbcf0juttmjpnge7.apps.googleusercontent.com",
+	googleClientSecret: "s47YjlHH5RroZ3b5-a5tr96r",
 	mongoURI:
 		"mongodb+srv://billy:billy@cluster0-xvouw.mongodb.net/test?retryWrites=true&w=majority",
 	cookieKey: "vekjnvkjervjernvjkernvjenr",
